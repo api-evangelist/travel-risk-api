@@ -1,0 +1,183 @@
+openapi: 3.2.0
+info:
+  title: Travel Risk Billing API
+  description: Real-time travel advisories, disaster alerts, conflict events and composite country risk scores, aggregated from government and multilateral sources.
+  contact:
+    name: Travel Code
+    email: api@travel-code.com
+    url: https://travelriskapi.com
+  version: 1.0.0
+  summary: Government travel advisories, disaster and conflict alerts and country risk scores.
+  x-logo:
+    url: https://travelriskapi.com/assets/logo.png
+    backgroundColor: '#FFFFFF'
+    altText: Travel Risk API
+servers:
+- url: https://api.travelriskapi.com
+  description: Production
+security:
+- ApiKeyHeader: []
+tags:
+- name: Billing
+  description: Stripe checkout + webhook receiver.
+paths:
+  /api/v1/billing/plans:
+    get:
+      tags:
+      - Billing
+      summary: Available plans and credit packs
+      description: Public pricing, so the dashboard and landing page never drift from Stripe.
+      operationId: list_plans_api_v1_billing_plans_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security: []
+  /api/v1/billing/checkout:
+    post:
+      tags:
+      - Billing
+      summary: Start a Stripe checkout to subscribe to starter/pro/enterprise
+      description: 'Upgrade the calling key. Authenticated so a session can never be created
+
+        for someone else''s key.'
+      operationId: create_checkout_api_v1_billing_checkout_post
+      parameters:
+      - name: tier
+        in: query
+        required: true
+        schema:
+          type: string
+          pattern: ^(starter|pro|enterprise)$
+          title: Tier
+      - name: success_url
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Success Url
+      - name: cancel_url
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Cancel Url
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/billing/credits:
+    post:
+      tags:
+      - Billing
+      summary: Start a Stripe checkout to buy prepaid credits
+      operationId: buy_credits_api_v1_billing_credits_post
+      parameters:
+      - name: price_id
+        in: query
+        required: true
+        schema:
+          type: string
+          description: A price_id from /api/v1/billing/plans
+          title: Price Id
+        description: A price_id from /api/v1/billing/plans
+      - name: success_url
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Success Url
+      - name: cancel_url
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Cancel Url
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/billing/portal:
+    post:
+      tags:
+      - Billing
+      summary: Open the Stripe customer portal (cancel, switch plan, update card)
+      operationId: billing_portal_api_v1_billing_portal_post
+      parameters:
+      - name: return_url
+        in: query
+        required: false
+        schema:
+          type: string
+          title: Return Url
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Your key from https://travelriskapi.com — free plan, no card.
+externalDocs:
+  description: Documentation
+  url: https://travelriskapi.com/docs

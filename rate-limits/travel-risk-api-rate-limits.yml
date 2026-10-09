@@ -1,0 +1,77 @@
+name: Travel Risk API Rate Limits
+generated: '2026-10-09'
+method: searched
+source: https://travelriskapi.com/docs
+exhaustion_status: 429
+headers:
+- Retry-After
+- X-Quota-Limit
+- X-Quota-Used
+reset_text: Daily counters reset at 00:00 UTC. Over a limit, requests return 429 with
+  a Retry-After header.
+limits:
+- name: Free risk daily quota
+  plan: Free
+  max: 100
+  window: day
+  scope: per-key
+  limit_text: Burst / minute Free $0 100 3,000 60
+- name: Free aviation monthly quota
+  plan: Free
+  max: 3000
+  window: month
+  scope: per-key
+  limit_text: Burst / minute Free $0 100 3,000 60
+- name: Starter risk daily quota
+  plan: Starter
+  max: 2000
+  window: day
+  scope: per-key
+  limit_text: Starter $29 / month 2,000 60,000 120
+- name: Starter aviation monthly quota
+  plan: Starter
+  max: 60000
+  window: month
+  scope: per-key
+  limit_text: Starter $29 / month 2,000 60,000 120
+- name: Pro risk daily quota
+  plan: Pro
+  max: 10000
+  window: day
+  scope: per-key
+  limit_text: Pro $99 / month 10,000 300,000 600
+- name: Pro aviation monthly quota
+  plan: Pro
+  max: 300000
+  window: month
+  scope: per-key
+  limit_text: Pro $99 / month 10,000 300,000 600
+- name: Free burst
+  plan: Free
+  max: 60
+  window: minute
+  scope: per-key
+  kind: burst
+  limit_text: Burst / minute Free $0 100 3,000 60
+- name: Starter burst
+  plan: Starter
+  max: 120
+  window: minute
+  scope: per-key
+  kind: burst
+  limit_text: Starter $29 / month 2,000 60,000 120
+- name: Pro burst
+  plan: Pro
+  max: 600
+  window: minute
+  scope: per-key
+  kind: burst
+  limit_text: Pro $99 / month 10,000 300,000 600
+- name: Enterprise burst
+  plan: Enterprise
+  max: 3000
+  window: minute
+  scope: per-key
+  kind: burst
+  limit_text: Enterprise $499 / month unlimited unlimited 3,000
+note: X-Quota-* headers are named in https://travelriskapi.com/llms.txt.

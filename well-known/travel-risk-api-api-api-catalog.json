@@ -1,0 +1,46 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://api.travelriskapi.com/api/v1",
+      "service-desc": [
+        {
+          "href": "https://api.travelriskapi.com/openapi.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://travelriskapi.com/docs/risk",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://travelriskapi.com/status.json",
+          "type": "application/json"
+        }
+      ]
+    },
+    {
+      "anchor": "https://api.travelriskapi.com",
+      "service-desc": [
+        {
+          "href": "https://api.travelriskapi.com/ext/openapi.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://api.travelriskapi.com/ext/reference/",
+          "type": "text/html"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://travelriskapi.com/status.json",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

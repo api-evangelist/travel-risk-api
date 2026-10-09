@@ -1,0 +1,29 @@
+name: Travel Risk API MCP Server
+generated: '2026-10-09'
+method: searched
+source: https://travelriskapi.com/docs/mcp
+status: documented
+deployment:
+  mode: remote
+  endpoint: https://api.travelriskapi.com/mcp
+  transport: streamable-http
+  auth: oauth
+  verified: probed
+  note: "POST returns 401 anonymously (pre-flight); docs: OAuth 2.1 with PKCE, or X-API-Key header. Registry name com.travelriskapi/travel-risk-api."
+tools_source: documented table on https://travelriskapi.com/docs/mcp (not a live tools/list; server is auth-gated)
+tools:
+- name: assess_trip
+- name: country_risk
+- name: country_profile
+- name: travel_advisories
+- name: active_alerts
+- name: conflict_events
+- name: airport_conditions
+- name: airport_security_wait
+- name: border_wait
+- name: airline_profile
+- name: aircraft
+- name: flight_status
+- name: flight_wifi
+- name: airline_wifi
+- name: ip_geolocation

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/travel-risk-api/main/json-schema/travel-risk-api-recover-request-schema.json",
+  "title": "RecoverRequest",
+  "x-generated": "2026-10-09",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/travel-risk-api-openapi.yml#/components/schemas/RecoverRequest",
+  "properties": {
+    "email": {
+      "type": "string",
+      "title": "Email"
+    }
+  },
+  "type": "object",
+  "required": [
+    "email"
+  ]
+}

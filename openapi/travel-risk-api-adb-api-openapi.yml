@@ -1,0 +1,544 @@
+openapi: 3.2.0
+info:
+  title: Travel Risk Adb API
+  version: '1.0'
+  contact:
+    name: Travel Code
+    email: api@travel-code.com
+    url: https://travelriskapi.com
+  x-logo:
+    url: https://travelriskapi.com/assets/logo.png
+    backgroundColor: '#FFFFFF'
+    altText: Travel Risk API
+  description: 'Operations tagged Adb across 2 of this provider''s published API definitions: travel-risk-api-aviation-openapi.json, travel-risk-api-aviation-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.travelriskapi.com
+  description: Production
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Adb
+paths:
+  /adb/airports/iata/{code}:
+    get:
+      summary: Adb Airports/Iata
+      operationId: adb_airports_iata_adb_airports_iata__code__get
+      parameters:
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Code
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/airports/icao/{code}:
+    get:
+      summary: Adb Airports/Icao
+      operationId: adb_airports_icao_adb_airports_icao__code__get
+      parameters:
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Code
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/airports/search/location:
+    get:
+      summary: Adb Airports/Search/Location
+      operationId: adb_airports_search_location_adb_airports_search_location_get
+      parameters:
+      - name: lat
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lat
+      - name: lon
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Lon
+      - name: radiusKm
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Radiuskm
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Limit
+      - name: withFlightInfoOnly
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Withflightinfoonly
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/airports/search/ip:
+    get:
+      summary: Adb Airports/Search/Ip
+      operationId: adb_airports_search_ip_adb_airports_search_ip_get
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Q
+      - name: radiusKm
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Radiuskm
+      - name: limit
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Limit
+      - name: withFlightInfoOnly
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Withflightinfoonly
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/aircrafts/Reg/{reg}:
+    get:
+      summary: Adb Aircrafts/Reg
+      operationId: adb_aircrafts_reg_adb_aircrafts_Reg__reg__get
+      parameters:
+      - name: reg
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Reg
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/aircrafts/reg/{reg}:
+    get:
+      summary: Adb Aircrafts/Reg
+      operationId: adb_aircrafts_reg_adb_aircrafts_reg__reg__get
+      parameters:
+      - name: reg
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Reg
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/aircrafts/icao24/{hex}:
+    get:
+      summary: Adb Aircrafts/Icao24
+      operationId: adb_aircrafts_icao24_adb_aircrafts_icao24__hex__get
+      parameters:
+      - name: hex
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Hex
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/airports/iata/{code}/weather:
+    get:
+      summary: Adb Airports/Weather
+      operationId: adb_airports_weather_adb_airports_iata__code__weather_get
+      parameters:
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Code
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/airports/icao/{code}/weather:
+    get:
+      summary: Adb Airports/Weather
+      operationId: adb_airports_weather_adb_airports_icao__code__weather_get
+      parameters:
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Code
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/airports/iata/{code}/weather/{from}/{to}:
+    get:
+      summary: Adb Airports/Weather/Range
+      operationId: adb_airports_weather_range_adb_airports_iata__code__weather__from___to__get
+      parameters:
+      - name: code
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Code
+      - name: from
+        in: path
+        required: true
+        schema:
+          type: string
+          title: From
+      - name: to
+        in: path
+        required: true
+        schema:
+          type: string
+          title: To
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/flights/number/{number}:
+    get:
+      summary: Adb Flights/Number
+      operationId: adb_flights_number_adb_flights_number__number__get
+      parameters:
+      - name: number
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Number
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/flights/number/{number}/{date}:
+    get:
+      summary: Adb Flights/Number/Date
+      description: 'Flight legs for a flight number on a date (local date, YYYY-MM-DD).
+
+
+        `withAircraftImage=true` adds `aircraft.image` when a photo of the aircraft exists: `url` (image), `author`,
+
+        `webUrl` (photo page) and ready-made `htmlAttributions`. Photo licence conditions apply to your product:
+
+        show the photographer credit as visible text next to the image, make the image link to `webUrl` with a plain
+
+        link (no rel="nofollow"), and do not make photos a paid-only or members-only feature.'
+      operationId: adb_flights_number_date_adb_flights_number__number___date__get
+      parameters:
+      - name: number
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Number
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Date
+      - name: withAircraftImage
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Withaircraftimage
+      - name: dateLocalRole
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Datelocalrole
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /adb/flights/{number}/delays:
+    get:
+      summary: Adb Flights/Delays
+      operationId: adb_flights_delays_adb_flights__number__delays_get
+      parameters:
+      - name: number
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Number
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Adb
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Your key from https://travelriskapi.com — free plan, no card.
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Same key as a query parameter, for clients that cannot send headers.
+externalDocs:
+  description: Documentation
+  url: https://api.travelriskapi.com/ext/reference/
+x-refined-from:
+- travel-risk-api-aviation-openapi.json
+- travel-risk-api-aviation-openapi.yml

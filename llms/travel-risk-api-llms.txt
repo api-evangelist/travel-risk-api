@@ -1,0 +1,134 @@
+# Travel Risk API — travel risk and aviation data
+
+> A REST API for real-time travel safety data: government travel advisories, natural
+> disaster alerts, armed-conflict events and composite country risk scores for 229
+> countries and territories.
+
+Base URL: https://api.travelriskapi.com
+Documentation: https://travelriskapi.com/docs
+Risk API reference: https://travelriskapi.com/docs/risk
+Aviation API reference: https://api.travelriskapi.com/ext/reference/
+MCP server (OAuth sign-in, 15 tools): https://api.travelriskapi.com/mcp · setup: https://travelriskapi.com/docs/mcp · MCP Registry: com.travelriskapi/travel-risk-api
+Pricing: https://travelriskapi.com/pricing
+OpenAPI spec: https://api.travelriskapi.com/openapi.json
+Trip assessment (whole itinerary in one call): POST https://api.travelriskapi.com/api/v1/trips/assess
+API catalog (RFC 9727): https://travelriskapi.com/.well-known/api-catalog
+Interactive docs (Swagger): https://api.travelriskapi.com/docs
+
+## Getting a key
+
+Free tier: 100 risk requests/day and 3,000 aviation calls/month, no credit card. One key opens both APIs.
+
+```
+curl -X POST https://api.travelriskapi.com/api/v1/register \
+  -H "Content-Type: application/json" \
+  -d '{"email": "you@example.com"}'
+```
+
+The key is returned in the response and emailed. Send it on every request as the
+`X-API-Key` header.
+
+## Core endpoints
+
+- `GET /api/v1/countries` — all countries with advisory level and risk score
+- `GET /api/v1/countries/codes` — every valid country code in one response
+- `GET /api/v1/countries/{iso}` — one country; accepts alpha-3 (USA) or alpha-2 (US)
+- `GET /api/v1/risk-score/{iso}` — composite 1–5 risk score with calculation breakdown
+- `GET /api/v1/alerts` — active disaster/hazard alerts; filters: `severity`,
+  `alert_type`, `country_iso`, `days` (1–365), `skip`, `limit` (max 1000)
+- `GET /api/v1/conflicts` — armed conflict and unrest events, rolling 30-day window;
+  filters: `country_iso` (alpha-3 or alpha-2), `days` (1–30), `min_severity`, `skip`, `limit`
+- `GET /api/v1/advisories` — government advisories grouped by country, with the
+  maximum level across three independent government sources; filters: `country_iso`
+  (alpha-3 or alpha-2), `min_level`
+- `GET /api/v1/usage` — the caller's own consumption
+- `GET /api/v1/billing/plans` — current plans and credit packs
+- `GET /api/v1/health` — service health
+
+## Example
+
+```
+curl -H "X-API-Key: YOUR_KEY" \
+  "https://api.travelriskapi.com/api/v1/alerts?severity=Critical&days=7&limit=50"
+```
+
+Every list response includes `total`, `skip`, `limit`, `data`, plus
+`data_updated_at` (the newest record held) and `generated_at`.
+
+## Data and refresh cadence
+
+- Government travel advisories from three national agencies — refreshed daily
+- Natural disaster and severe-weather alerts from five sources — every 6 hours
+- Armed-conflict / unrest events — every 15 minutes
+- Coverage: 229 countries and territories, ~19,000 active alerts
+
+Upstream source names are presented as neutral labels (`agency-1`, `weather`,
+`seismic`) rather than brand names.
+
+## Aviation endpoints (same key)
+
+Full reference: https://api.travelriskapi.com/ext/reference/ · OpenAPI: https://api.travelriskapi.com/ext/openapi.json
+
+- `/api/v9/*` — flights and reference data: `airports`, `airlines`, `cities`, `countries`, `fleets`, `routes`,
+  `timezones`, `nearby`, `suggest`, `flights` (live positions), `flight`, `schedules`, `delays`; webhooks via
+  `listen` / `unlisten` / `listeners`. JSON, XML or CSV.
+- `/adb/*` — airports, aircraft and flights: `airports/iata/{code}`, `airports/search/location`, `airports/search/ip`,
+  `aircrafts/reg/{reg}`, `aircrafts/icao24/{hex}`, airport weather, `flights/number/{n}[/{date}]`, `flights/{n}/delays`.
+- `/ext/v1/*` — in-flight Wi-Fi and Starlink by flight, aircraft or airline (`flight/{flight}/wifi`, `starlink/fleet`);
+  airline profile and safety (`airline/{iata}/profile?include=risk`); US airport security wait times, airport delay status and
+  weather (`airport/{iata}/summary`); US land border waits (`border/{port}`); fare history for your own bookings
+  (`prices/snapshots`, `prices/history`, `prices/calendar`); IP geolocation (`geoip/{ip}`).
+- Coverage: 8,800+ airports, 7,000+ airlines, 614,000 aircraft, 76 airlines with Wi-Fi data, 26 US airports with
+  security wait times, 85 border crossings.
+
+Aviation calls per month by plan: Free 3,000 · Starter 60,000 · Pro 300,000 · Enterprise unlimited.
+
+## Plans
+
+| Plan | Price | Requests/day |
+|---|---|---|
+| Free | $0 | 100 |
+| Starter | $29/month | 2,000 |
+| Pro | $99/month | 10,000 |
+| Enterprise | $499/month | unlimited |
+
+Prepaid credits from $10 (10,000 requests) are also available and are consumed only
+after the daily quota is used up. Subscriptions can be cancelled at any time from the
+customer dashboard.
+
+## Limits and conventions
+
+- Authentication: `X-API-Key` header, required on all `/api/v1/*` endpoints
+- Two limits apply: a per-minute burst limit and a daily quota; both return HTTP 429
+  with a `Retry-After` header. The daily counter resets at 00:00 UTC.
+- Quota state is reported on every response via `X-Quota-Limit`, `X-Quota-Used`,
+  `X-Quota-Remaining` and `X-Credits-Balance`
+- Pagination via `skip` / `limit`, maximum 1000 records per page; `total` is always
+  returned, so a full export of ~19,000 alerts takes 20 requests
+- Country codes: ISO 3166-1 alpha-3 preferred, alpha-2 accepted
+- Responses are gzip/zstd compressed when the client advertises support
+
+## Changelog
+
+https://travelriskapi.com/changelog — every API change, including added fields.
+API keys do not expire.
+
+## Site map
+
+- https://travelriskapi.com/ — product overview with a live world map of advisory levels
+- https://travelriskapi.com/pricing — plans: Free $0, Starter $29, Pro $99, Enterprise $499 per month
+- https://travelriskapi.com/docs — quickstart, authentication, limits, conventions
+- https://travelriskapi.com/docs/risk — risk endpoints with real sample responses
+- https://travelriskapi.com/countries — advisory level and risk score for every country
+- https://travelriskapi.com/countries/{country-name} — one page per country, e.g. /countries/france
+- https://travelriskapi.com/changelog — every API change, newest first
+- https://travelriskapi.com/sitemap.xml — all URLs with last-modified dates
+- Interface languages: /es/, /pt/, /fr/, /de/, /ru/, /zh/ (home and pricing). Docs and data are English.
+
+## Security and compliance
+
+Travel Code Trust Center: https://trust.travel-code.com
+
+## Contact
+
+api@travel-code.com

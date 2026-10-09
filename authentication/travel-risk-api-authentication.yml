@@ -1,0 +1,25 @@
+generated: '2026-10-09'
+method: derived
+source: openapi/travel-risk-api-aviation-openapi.yml, openapi/travel-risk-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: ApiKeyHeader
+  type: apiKey
+  in: header
+  parameter: X-API-Key
+  description: Your key from https://travelriskapi.com — free plan, no card.
+  sources:
+  - openapi/travel-risk-api-aviation-openapi.yml
+  - openapi/travel-risk-api-openapi.yml
+- name: ApiKeyQuery
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: Same key as a query parameter, for clients that cannot send headers.
+  sources:
+  - openapi/travel-risk-api-aviation-openapi.yml

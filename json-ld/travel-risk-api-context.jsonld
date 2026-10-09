@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "@vocab": "https://travelriskapi.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "travel": "https://travelriskapi.com/schema#",
+    "HTTPValidationError": "travel:HTTPValidationError",
+    "detail": {
+      "@id": "travel:detail",
+      "@container": "@list"
+    },
+    "ValidationError": "travel:ValidationError",
+    "loc": {
+      "@id": "travel:loc",
+      "@container": "@list"
+    },
+    "msg": {
+      "@id": "travel:msg",
+      "@type": "xsd:string"
+    },
+    "type": {
+      "@id": "travel:type",
+      "@type": "xsd:string"
+    },
+    "input": {
+      "@id": "travel:input"
+    },
+    "ctx": {
+      "@id": "travel:ctx"
+    },
+    "RecoverRequest": "travel:RecoverRequest",
+    "email": {
+      "@id": "travel:email",
+      "@type": "xsd:string"
+    },
+    "RegisterRequest": "travel:RegisterRequest",
+    "company": {
+      "@id": "travel:company",
+      "@type": "xsd:string"
+    },
+    "Segment": "travel:Segment",
+    "flight": {
+      "@id": "travel:flight"
+    },
+    "from_airport": {
+      "@id": "travel:from_airport"
+    },
+    "to_airport": {
+      "@id": "travel:to_airport"
+    },
+    "country": {
+      "@id": "travel:country"
+    },
+    "city": {
+      "@id": "travel:city"
+    },
+    "lat": {
+      "@id": "travel:lat"
+    },
+    "lon": {
+      "@id": "travel:lon"
+    },
+    "start": {
+      "@id": "travel:start"
+    },
+    "end": {
+      "@id": "travel:end"
+    },
+    "TripRequest": "travel:TripRequest",
+    "trip_id": {
+      "@id": "travel:trip_id"
+    },
+    "segments": {
+      "@id": "travel:segments",
+      "@container": "@list"
+    },
+    "include_flight_status": {
+      "@id": "travel:include_flight_status",
+      "@type": "xsd:boolean"
+    }
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Travel Risk API API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Travel Risk API's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-09) from openapi/travel-risk-api-aviation-openapi.yml, openapi/travel-risk-api-openapi.yml.",
+  "dcterms:created": "2026-10-09",
+  "dcterms:source": [
+    "openapi/travel-risk-api-aviation-openapi.yml",
+    "openapi/travel-risk-api-openapi.yml"
+  ]
+}

@@ -1,0 +1,141 @@
+openapi: 3.2.0
+info:
+  title: Travel Risk Auth API
+  description: Real-time travel advisories, disaster alerts, conflict events and composite country risk scores, aggregated from government and multilateral sources.
+  contact:
+    name: Travel Code
+    email: api@travel-code.com
+    url: https://travelriskapi.com
+  version: 1.0.0
+  summary: Government travel advisories, disaster and conflict alerts and country risk scores.
+  x-logo:
+    url: https://travelriskapi.com/assets/logo.png
+    backgroundColor: '#FFFFFF'
+    altText: Travel Risk API
+servers:
+- url: https://api.travelriskapi.com
+  description: Production
+security:
+- ApiKeyHeader: []
+tags:
+- name: Auth
+  description: Self-serve API key registration.
+paths:
+  /api/v1/register:
+    post:
+      tags:
+      - Auth
+      summary: Register a new free-tier API key
+      operationId: register_api_key_api_v1_register_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security: []
+  /api/v1/recover-key:
+    post:
+      tags:
+      - Auth
+      summary: Email the API key belonging to an address
+      description: 'Resend an existing key.
+
+
+        Always answers the same way whether or not the address exists — otherwise this
+
+        endpoint becomes a way to enumerate which emails are registered.'
+      operationId: recover_key_api_v1_recover_key_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecoverRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security: []
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    RegisterRequest:
+      properties:
+        email:
+          type: string
+          title: Email
+        company:
+          type: string
+          title: Company
+      type: object
+      required:
+      - email
+      title: RegisterRequest
+    RecoverRequest:
+      properties:
+        email:
+          type: string
+          title: Email
+      type: object
+      required:
+      - email
+      title: RecoverRequest
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Your key from https://travelriskapi.com — free plan, no card.
+externalDocs:
+  description: Documentation
+  url: https://travelriskapi.com/docs

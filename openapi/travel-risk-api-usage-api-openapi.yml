@@ -1,0 +1,92 @@
+openapi: 3.2.0
+info:
+  title: Travel Risk Usage API
+  description: Real-time travel advisories, disaster alerts, conflict events and composite country risk scores, aggregated from government and multilateral sources.
+  contact:
+    name: Travel Code
+    email: api@travel-code.com
+    url: https://travelriskapi.com
+  version: 1.0.0
+  summary: Government travel advisories, disaster and conflict alerts and country risk scores.
+  x-logo:
+    url: https://travelriskapi.com/assets/logo.png
+    backgroundColor: '#FFFFFF'
+    altText: Travel Risk API
+servers:
+- url: https://api.travelriskapi.com
+  description: Production
+security:
+- ApiKeyHeader: []
+tags:
+- name: Usage
+  description: Per-key usage metering and quota status.
+paths:
+  /api/v1/usage:
+    get:
+      tags:
+      - Usage
+      summary: Daily/monthly usage breakdown for your API key
+      operationId: get_usage_api_v1_usage_get
+      parameters:
+      - name: days
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 90
+          minimum: 1
+          default: 7
+          title: Days
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Your key from https://travelriskapi.com — free plan, no card.
+externalDocs:
+  description: Documentation
+  url: https://travelriskapi.com/docs

@@ -1,0 +1,911 @@
+openapi: 3.2.0
+info:
+  title: Travel Risk Ext API
+  version: '1.0'
+  contact:
+    name: Travel Code
+    email: api@travel-code.com
+    url: https://travelriskapi.com
+  x-logo:
+    url: https://travelriskapi.com/assets/logo.png
+    backgroundColor: '#FFFFFF'
+    altText: Travel Risk API
+  description: 'Operations tagged Ext across 2 of this provider''s published API definitions: travel-risk-api-aviation-openapi.json, travel-risk-api-aviation-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.travelriskapi.com
+  description: Production
+security:
+- ApiKeyHeader: []
+- ApiKeyQuery: []
+tags:
+- name: Ext
+paths:
+  /ext/v1/airport/{iata}/status:
+    get:
+      summary: Airport Status
+      operationId: airport_status_ext_v1_airport__iata__status_get
+      parameters:
+      - name: iata
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iata
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/airport/{iata}/security:
+    get:
+      summary: Airport Security
+      operationId: airport_security_ext_v1_airport__iata__security_get
+      parameters:
+      - name: iata
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iata
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/airport/{iata}/immigration:
+    get:
+      summary: Airport Immigration
+      operationId: airport_immigration_ext_v1_airport__iata__immigration_get
+      parameters:
+      - name: iata
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iata
+      - name: date
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/airport/{iata}/weather:
+    get:
+      summary: Airport Weather
+      operationId: airport_weather_ext_v1_airport__iata__weather_get
+      parameters:
+      - name: iata
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iata
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/airport/{iata}/summary:
+    get:
+      summary: Airport Summary
+      operationId: airport_summary_ext_v1_airport__iata__summary_get
+      parameters:
+      - name: iata
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iata
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/border/{port}:
+    get:
+      summary: Border
+      operationId: border_ext_v1_border__port__get
+      parameters:
+      - name: port
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Port
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/aircraft/{reg}:
+    get:
+      summary: Aircraft By Reg
+      operationId: aircraft_by_reg_ext_v1_aircraft__reg__get
+      parameters:
+      - name: reg
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Reg
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/geoip/{ip}:
+    get:
+      summary: Geoip Lookup
+      operationId: geoip_lookup_ext_v1_geoip__ip__get
+      parameters:
+      - name: ip
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Ip
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/flights/coverage:
+    get:
+      summary: Flights Coverage
+      operationId: flights_coverage_ext_v1_flights_coverage_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/prices/history:
+    get:
+      summary: History Route
+      operationId: history_route_ext_v1_prices_history_get
+      parameters:
+      - name: origin
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Origin
+      - name: destination
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Destination
+      - name: dep_date
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Dep Date
+      - name: ret_date
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Ret Date
+      - name: cabin
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cabin
+      - name: currency
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Currency
+      - name: days
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Days
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/prices/calendar:
+    get:
+      summary: Calendar Route
+      operationId: calendar_route_ext_v1_prices_calendar_get
+      parameters:
+      - name: origin
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Origin
+      - name: destination
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Destination
+      - name: month
+        in: query
+        required: false
+        schema:
+          type: string
+          default: ''
+          title: Month
+      - name: cabin
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Cabin
+      - name: currency
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Currency
+      - name: trip
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Trip
+      - name: days
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Days
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/prices/snapshots:
+    post:
+      summary: Prices Snapshots 202
+      operationId: prices_snapshots_202_ext_v1_prices_snapshots_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/prices/watchlist:
+    get:
+      summary: Prices Watchlist 200
+      operationId: prices_watchlist_200_ext_v1_prices_watchlist_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Ext
+    post:
+      summary: Prices Watchlist 200
+      operationId: prices_watchlist_200_ext_v1_prices_watchlist_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Ext
+    delete:
+      summary: Prices Watchlist 200
+      operationId: prices_watchlist_200_ext_v1_prices_watchlist_delete
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/prices/watchlist/{row_id}:
+    delete:
+      summary: Prices Watchlist 200
+      operationId: prices_watchlist_200_ext_v1_prices_watchlist__row_id__delete
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      parameters:
+      - name: row_id
+        in: path
+        required: true
+        schema:
+          type: string
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/airline/{iata}/profile:
+    get:
+      summary: Airline Profile
+      description: 'Airline profile: identity, fleet, IOSA registration, accident history and safety facts.'
+      operationId: airline_profile_ext_v1_airline__iata__profile_get
+      parameters:
+      - name: iata
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iata
+      - name: include
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Include
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/airline/changes:
+    get:
+      summary: Airline Changes
+      description: 'Field-level change log of airlines/airline_profiles (trigger-fed, migration 150).
+
+
+        ?since= ISO-8601 or unix seconds (default: last 7 days); ?iata= one airline; ?field= one column
+
+        (e.g. iosa_expiry); _limit 1..5000. Rows are ordered oldest-first so a client can checkpoint on the
+
+        last `changed_at`. Values are text; NULL = absent before/after.'
+      operationId: airline_changes_ext_v1_airline_changes_get
+      parameters:
+      - name: since
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Since
+      - name: iata
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Iata
+      - name: field
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Field
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 500
+          title: ' Limit'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/starlink/changes:
+    get:
+      summary: Starlink Changes
+      operationId: starlink_changes_ext_v1_starlink_changes_get
+      parameters:
+      - name: since
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Since
+      - name: kind
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Kind
+      - name: airline_iata
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Airline Iata
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 200
+          title: ' Limit'
+      - name: _offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+          title: ' Offset'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/stats/usage:
+    get:
+      summary: Stats Usage
+      operationId: stats_usage_ext_v1_stats_usage_get
+      parameters:
+      - name: days
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Days
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/stats/health:
+    get:
+      summary: Stats Health
+      operationId: stats_health_ext_v1_stats_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/aircraft/{reg}/wifi:
+    get:
+      summary: Aircraft Wifi
+      operationId: aircraft_wifi_ext_v1_aircraft__reg__wifi_get
+      parameters:
+      - name: reg
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Reg
+      - name: date
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/flight/{flight_iata}/wifi:
+    get:
+      summary: Flight Wifi
+      operationId: flight_wifi_ext_v1_flight__flight_iata__wifi_get
+      parameters:
+      - name: flight_iata
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Flight Iata
+      - name: date
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Date
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/airline/{iata}/wifi:
+    get:
+      summary: Airline Wifi
+      operationId: airline_wifi_ext_v1_airline__iata__wifi_get
+      parameters:
+      - name: iata
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iata
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/starlink/fleet:
+    get:
+      summary: Starlink Fleet
+      operationId: starlink_fleet_ext_v1_starlink_fleet_get
+      parameters:
+      - name: airline_iata
+        in: query
+        required: false
+        schema:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Airline Iata
+      - name: _limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 100
+          title: ' Limit'
+      - name: _offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+          title: ' Offset'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+  /ext/v1/wifi/reports:
+    post:
+      summary: Submit Report
+      description: 'Plain (unwrapped) route: same auth/envelope/usage as ext_router but answers 201 and is never cached. The body is
+
+        read and parsed only after authentication and never beyond report_body_max_bytes; all blocking work runs off the loop.'
+      operationId: submit_report_ext_v1_wifi_reports_post
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      tags:
+      - Ext
+    servers:
+    - url: https://api.travelriskapi.com
+      description: Production
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Your key from https://travelriskapi.com — free plan, no card.
+    ApiKeyQuery:
+      type: apiKey
+      in: query
+      name: api_key
+      description: Same key as a query parameter, for clients that cannot send headers.
+externalDocs:
+  description: Documentation
+  url: https://api.travelriskapi.com/ext/reference/
+x-refined-from:
+- travel-risk-api-aviation-openapi.json
+- travel-risk-api-aviation-openapi.yml

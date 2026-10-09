@@ -1,0 +1,681 @@
+openapi: 3.2.0
+info:
+  title: Travel Risk Public Data API
+  description: Real-time travel advisories, disaster alerts, conflict events and composite country risk scores, aggregated from government and multilateral sources.
+  contact:
+    name: Travel Code
+    email: api@travel-code.com
+    url: https://travelriskapi.com
+  version: 1.0.0
+  summary: Government travel advisories, disaster and conflict alerts and country risk scores.
+  x-logo:
+    url: https://travelriskapi.com/assets/logo.png
+    backgroundColor: '#FFFFFF'
+    altText: Travel Risk API
+servers:
+- url: https://api.travelriskapi.com
+  description: Production
+security:
+- ApiKeyHeader: []
+tags:
+- name: Public Data
+  description: Country advisories, alerts, and risk scores. All endpoints require X-API-Key.
+paths:
+  /api/v1/countries/codes:
+    get:
+      tags:
+      - Public Data
+      summary: Flat list of every valid ISO 3166-1 alpha-3 code we cover
+      description: 'All supported country codes in one response, no pagination.
+
+
+        /api/v1/countries is paginated (100 max per page), which makes "give me the
+
+        list of valid codes" a three-request job. This returns them all at once so
+
+        clients can validate input locally.'
+      operationId: list_country_codes_api_v1_countries_codes_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/countries:
+    get:
+      tags:
+      - Public Data
+      summary: List countries with advisory levels
+      operationId: get_countries_api_v1_countries_get
+      parameters:
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Skip
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 1000
+          minimum: 1
+          default: 50
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/countries/{iso_code}:
+    get:
+      tags:
+      - Public Data
+      summary: Get country detail by ISO-3 code
+      operationId: get_country_api_v1_countries__iso_code__get
+      parameters:
+      - name: iso_code
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iso Code
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/alerts:
+    get:
+      tags:
+      - Public Data
+      summary: List active alerts with optional filters
+      operationId: get_alerts_api_v1_alerts_get
+      parameters:
+      - name: severity
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Filter: Low | Medium | High | Critical'
+          title: Severity
+        description: 'Filter: Low | Medium | High | Critical'
+      - name: alert_type
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'Filter: earthquake | flood | wildfire | cyclone | volcano | drought | severe_storm | humanitarian | armed_conflict | other'
+          title: Alert Type
+        description: 'Filter: earthquake | flood | wildfire | cyclone | volcano | drought | severe_storm | humanitarian | armed_conflict | other'
+      - name: country_iso
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Filter by country code. Accepts ISO 3166-1 alpha-3 (USA), alpha-2 (US), or legacy 3-letter codes we used before 2026-08-11.
+          title: Country Iso
+        description: Filter by country code. Accepts ISO 3166-1 alpha-3 (USA), alpha-2 (US), or legacy 3-letter codes we used before 2026-08-11.
+      - name: days
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 365
+          minimum: 1
+          description: Only events from the last N days (by event_date). Omit for all active alerts.
+          title: Days
+        description: Only events from the last N days (by event_date). Omit for all active alerts.
+      - name: updated_since
+        in: query
+        required: false
+        schema:
+          type: string
+          description: 'ISO-8601 timestamp. Return only alerts created or revised since then — use it to poll for changes instead of re-reading everything. Example: 2026-08-26T00:00:00'
+          title: Updated Since
+        description: 'ISO-8601 timestamp. Return only alerts created or revised since then — use it to poll for changes instead of re-reading everything. Example: 2026-08-26T00:00:00'
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Skip
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 1000
+          minimum: 1
+          default: 50
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/alerts/{alert_id}:
+    get:
+      tags:
+      - Public Data
+      summary: Get alert detail by ID
+      operationId: get_alert_api_v1_alerts__alert_id__get
+      parameters:
+      - name: alert_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Alert Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/risk-score/{iso_code}:
+    get:
+      tags:
+      - Public Data
+      summary: Composite risk score (advisory level + active-alert impact)
+      operationId: get_risk_score_api_v1_risk_score__iso_code__get
+      parameters:
+      - name: iso_code
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Iso Code
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/assess:
+    post:
+      tags:
+      - Public Data
+      summary: 'Assess an itinerary: destination risk, nearby alerts and flight status per…'
+      description: 'Send flights (flight number and/or airports) and stays (country). For each segment you get the destination
+
+        country''s risk score and government advisory levels, the active alerts within 300 km of the arrival airport
+
+        (or in the country for a stay), and live status for flights departing within 48 hours. `flags` lists what
+
+        needs attention across the trip, most severe first. Counts as one request; live flight lookups also count
+
+        as aviation calls on the same key.'
+      operationId: assess_trip_api_v1_trips_assess_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TripRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips:
+    post:
+      tags:
+      - Public Data
+      summary: 'Watch a trip: re-assessed every 30 minutes, new risk pushed to email, Slack…'
+      description: 'Same itinerary shape as /trips/assess plus `external_id` (your trip id; sending it again updates the trip),
+
+        `traveler` and `notify` (emails, slack_webhook, teams_webhook, webhook). Returns the first assessment and, on
+
+        creation, `webhook_secret` for verifying `X-TRK-Signature: sha256=HMAC(secret, body)`. Problems already present
+
+        at creation are in the response; later ones are pushed once each. Watching ends a day after the last segment.'
+      operationId: watch_trip_api_v1_trips_post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              examples:
+              - external_id: T-1001
+                traveler:
+                  name: Ana Silva
+                  email: ana@example.com
+                notify:
+                  emails:
+                  - travel@example.com
+                  webhook: https://example.com/hooks/travel-risk
+                segments:
+                - type: flight
+                  flight: UA1
+                  from_airport: SFO
+                  to_airport: SIN
+                  start: '2026-11-02T22:40:00Z'
+                - type: stay
+                  country: SGP
+                  end: '2026-11-06T09:00:00Z'
+              title: Body
+      responses:
+        '201':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    get:
+      tags:
+      - Public Data
+      summary: List watched trips
+      operationId: list_trips_api_v1_trips_get
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          default: active
+          title: Status
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 100
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}:
+    get:
+      tags:
+      - Public Data
+      summary: Get a watched trip with its latest assessment
+      operationId: get_trip_api_v1_trips__trip_id__get
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Trip Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - Public Data
+      summary: Stop watching a trip
+      operationId: stop_trip_api_v1_trips__trip_id__delete
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Trip Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/trips/{trip_id}/test-notification:
+    post:
+      tags:
+      - Public Data
+      summary: Send a test notification to the trip's channels
+      operationId: test_trip_notification_api_v1_trips__trip_id__test_notification_post
+      parameters:
+      - name: trip_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Trip Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/conflicts:
+    get:
+      tags:
+      - Public Data
+      summary: Recent armed-conflict incidents (coerce, assault, fight, mass violence)
+      operationId: get_conflicts_api_v1_conflicts_get
+      parameters:
+      - name: days
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 30
+          minimum: 1
+          description: Lookback window in days (max 30)
+          default: 7
+          title: Days
+        description: Lookback window in days (max 30)
+      - name: country_iso
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Filter by country. Accepts ISO 3166-1 alpha-3 (DEU), alpha-2 (DE), or a legacy code this API issued before 2026-08-11.
+          title: Country Iso
+        description: Filter by country. Accepts ISO 3166-1 alpha-3 (DEU), alpha-2 (DE), or a legacy code this API issued before 2026-08-11.
+      - name: country
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Legacy alias for country_iso. Still honoured; prefer country_iso.
+          title: Country
+        description: Legacy alias for country_iso. Still honoured; prefer country_iso.
+        deprecated: true
+      - name: min_severity
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Low | Medium | High | Critical
+          title: Min Severity
+        description: Low | Medium | High | Critical
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+          title: Skip
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 1000
+          minimum: 1
+          default: 50
+          title: Limit
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/v1/advisories:
+    get:
+      tags:
+      - Public Data
+      summary: Country travel advisories aggregated from multiple authoritative agencies
+      operationId: get_advisories_api_v1_advisories_get
+      parameters:
+      - name: country_iso
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Filter to one country. Accepts ISO 3166-1 alpha-3 (DEU), alpha-2 (DE), or a legacy code this API issued before 2026-08-11.
+          title: Country Iso
+        description: Filter to one country. Accepts ISO 3166-1 alpha-3 (DEU), alpha-2 (DE), or a legacy code this API issued before 2026-08-11.
+      - name: country
+        in: query
+        required: false
+        schema:
+          type: string
+          description: Legacy alias for country_iso. Still honoured; prefer country_iso.
+          title: Country
+        description: Legacy alias for country_iso. Still honoured; prefer country_iso.
+        deprecated: true
+      - name: min_level
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 4
+          minimum: 1
+          description: Return only countries where max_level ≥ min_level
+          title: Min Level
+        description: Return only countries where max_level ≥ min_level
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    TripRequest:
+      properties:
+        trip_id:
+          anyOf:
+          - type: string
+            maxLength: 200
+          - type: 'null'
+          title: Trip Id
+        segments:
+          items:
+            $ref: '#/components/schemas/Segment'
+          type: array
+          maxItems: 30
+          minItems: 1
+          title: Segments
+        include_flight_status:
+          type: boolean
+          title: Include Flight Status
+          default: true
+      type: object
+      required:
+      - segments
+      title: TripRequest
+    Segment:
+      properties:
+        type:
+          type: string
+          enum:
+          - flight
+          - stay
+          title: Type
+          default: flight
+        flight:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Flight
+          description: IATA flight number, e.g. UA1
+          examples:
+          - UA1
+        from_airport:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: From Airport
+          description: Departure airport IATA code
+          examples:
+          - SFO
+        to_airport:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: To Airport
+          description: Arrival airport IATA code
+          examples:
+          - NRT
+        country:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Country
+          description: 'Stay country: ISO 3166 alpha-3, alpha-2 or name'
+          examples:
+          - JPN
+        city:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: City
+        lat:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Lat
+        lon:
+          anyOf:
+          - type: number
+          - type: 'null'
+          title: Lon
+        start:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: Start
+          description: Departure or check-in time (ISO 8601)
+        end:
+          anyOf:
+          - type: string
+            format: date-time
+          - type: 'null'
+          title: End
+          description: Arrival or check-out time (ISO 8601)
+      type: object
+      title: Segment
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Your key from https://travelriskapi.com — free plan, no card.
+externalDocs:
+  description: Documentation
+  url: https://travelriskapi.com/docs

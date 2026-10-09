@@ -1,0 +1,9 @@
+name: Travel Risk API Changelog
+generated: '2026-10-09'
+method: searched
+source: https://travelriskapi.com/changelog
+scheme: dated
+policy: "We add fields; we do not rename or remove them without notice."
+entries:
+- {version: '2026-10-09', date: '2026-10-09', breaking: false, highlights: ["Fixed: expired alerts stayed active", "Changed: risk score v2; /risk-score returns the formula in calculation.method"]}
+- {version: '2026-10-08', date: '2026-10-08', breaking: false, highlights: ["Fixed: advisory levels briefly overstated after each data refresh", "Fixed: 8 US advisories were missing"]}

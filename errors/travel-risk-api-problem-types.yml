@@ -1,0 +1,21 @@
+generated: '2026-10-09'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/travel-risk-api-aviation-openapi.yml
+- openapi/travel-risk-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: HTTPValidationError
+coverage:
+  operations: 61
+  statuses_declared: 1
+problems:
+- status: 422
+  title: Unprocessable Content
+  description: Validation Error
+  operations: 51
+  media_types:
+  - application/json
+  schema: HTTPValidationError

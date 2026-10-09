@@ -1,0 +1,32 @@
+name: Travel Risk API Plans
+generated: '2026-10-09'
+method: searched
+source: https://travelriskapi.com/pricing
+audience: developer-api
+pricing_basis: tiered-subscription
+published: true
+currency: USD
+delivery: {delivery: managed}
+plans:
+- name: Free
+  price: 0
+  price_text: "$0"
+  features: [All endpoints, No credit card]
+  limits: ["100 risk requests a day", "3,000 aviation calls a month"]
+- name: Starter
+  price: 29
+  price_text: "$29 /month"
+  features: [Commercial use, Email support]
+  limits: ["2,000 risk requests a day", "60,000 aviation calls a month"]
+- name: Pro
+  price: 99
+  price_text: "$99 /month"
+  features: [Flight change webhooks, Priority support]
+  limits: ["10,000 risk requests a day", "300,000 aviation calls a month"]
+- name: Enterprise
+  price: 499
+  price_text: "$499 /month"
+  features: [99.5% uptime SLA, Dedicated support]
+  limits: [Unlimited risk requests, Unlimited aviation calls]
+overage:
+  price_text: "Prepaid credits from $10 per 10,000 requests, used only after the daily quota."

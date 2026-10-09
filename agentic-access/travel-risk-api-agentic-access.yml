@@ -1,0 +1,718 @@
+generated: '2026-10-09'
+method: generated
+source: openapi/travel-risk-api-aviation-openapi.yml, openapi/travel-risk-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 61
+  by_action_class:
+    connected: 47
+    acting: 14
+  by_consequence:
+    read: 47
+    write: 10
+    safety-critical: 1
+    physical: 3
+  human_in_the_loop_required: 1
+operations:
+- path: /ext/v1/airport/{iata}/status
+  method: get
+  operationId: airport_status_ext_v1_airport__iata__status_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/airport/{iata}/security
+  method: get
+  operationId: airport_security_ext_v1_airport__iata__security_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/airport/{iata}/immigration
+  method: get
+  operationId: airport_immigration_ext_v1_airport__iata__immigration_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/airport/{iata}/weather
+  method: get
+  operationId: airport_weather_ext_v1_airport__iata__weather_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/airport/{iata}/summary
+  method: get
+  operationId: airport_summary_ext_v1_airport__iata__summary_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/border/{port}
+  method: get
+  operationId: border_ext_v1_border__port__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/aircraft/{reg}
+  method: get
+  operationId: aircraft_by_reg_ext_v1_aircraft__reg__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/geoip/{ip}
+  method: get
+  operationId: geoip_lookup_ext_v1_geoip__ip__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/flights/coverage
+  method: get
+  operationId: flights_coverage_ext_v1_flights_coverage_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/prices/history
+  method: get
+  operationId: history_route_ext_v1_prices_history_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/prices/calendar
+  method: get
+  operationId: calendar_route_ext_v1_prices_calendar_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/prices/snapshots
+  method: post
+  operationId: prices_snapshots_202_ext_v1_prices_snapshots_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /ext/v1/prices/watchlist
+  method: get
+  operationId: prices_watchlist_200_ext_v1_prices_watchlist_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/prices/watchlist
+  method: post
+  operationId: prices_watchlist_200_ext_v1_prices_watchlist_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /ext/v1/prices/watchlist
+  method: delete
+  operationId: prices_watchlist_200_ext_v1_prices_watchlist_delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /ext/v1/prices/watchlist/{row_id}
+  method: delete
+  operationId: prices_watchlist_200_ext_v1_prices_watchlist__row_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /ext/v1/airline/{iata}/profile
+  method: get
+  operationId: airline_profile_ext_v1_airline__iata__profile_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/airline/changes
+  method: get
+  operationId: airline_changes_ext_v1_airline_changes_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/starlink/changes
+  method: get
+  operationId: starlink_changes_ext_v1_starlink_changes_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/stats/usage
+  method: get
+  operationId: stats_usage_ext_v1_stats_usage_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/stats/health
+  method: get
+  operationId: stats_health_ext_v1_stats_health_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/aircraft/{reg}/wifi
+  method: get
+  operationId: aircraft_wifi_ext_v1_aircraft__reg__wifi_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/flight/{flight_iata}/wifi
+  method: get
+  operationId: flight_wifi_ext_v1_flight__flight_iata__wifi_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/airline/{iata}/wifi
+  method: get
+  operationId: airline_wifi_ext_v1_airline__iata__wifi_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/starlink/fleet
+  method: get
+  operationId: starlink_fleet_ext_v1_starlink_fleet_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /ext/v1/wifi/reports
+  method: post
+  operationId: submit_report_ext_v1_wifi_reports_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /adb/airports/iata/{code}
+  method: get
+  operationId: adb_airports_iata_adb_airports_iata__code__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/airports/icao/{code}
+  method: get
+  operationId: adb_airports_icao_adb_airports_icao__code__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/airports/search/location
+  method: get
+  operationId: adb_airports_search_location_adb_airports_search_location_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/airports/search/ip
+  method: get
+  operationId: adb_airports_search_ip_adb_airports_search_ip_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/aircrafts/Reg/{reg}
+  method: get
+  operationId: adb_aircrafts_reg_adb_aircrafts_Reg__reg__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/aircrafts/reg/{reg}
+  method: get
+  operationId: adb_aircrafts_reg_adb_aircrafts_reg__reg__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/aircrafts/icao24/{hex}
+  method: get
+  operationId: adb_aircrafts_icao24_adb_aircrafts_icao24__hex__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/airports/iata/{code}/weather
+  method: get
+  operationId: adb_airports_weather_adb_airports_iata__code__weather_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/airports/icao/{code}/weather
+  method: get
+  operationId: adb_airports_weather_adb_airports_icao__code__weather_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/airports/iata/{code}/weather/{from}/{to}
+  method: get
+  operationId: adb_airports_weather_range_adb_airports_iata__code__weather__from___to__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/flights/number/{number}
+  method: get
+  operationId: adb_flights_number_adb_flights_number__number__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/flights/number/{number}/{date}
+  method: get
+  operationId: adb_flights_number_date_adb_flights_number__number___date__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /adb/flights/{number}/delays
+  method: get
+  operationId: adb_flights_delays_adb_flights__number__delays_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/health
+  method: get
+  operationId: health_check_api_v1_health_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/countries/codes
+  method: get
+  operationId: list_country_codes_api_v1_countries_codes_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/countries
+  method: get
+  operationId: get_countries_api_v1_countries_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/countries/{iso_code}
+  method: get
+  operationId: get_country_api_v1_countries__iso_code__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/alerts
+  method: get
+  operationId: get_alerts_api_v1_alerts_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/alerts/{alert_id}
+  method: get
+  operationId: get_alert_api_v1_alerts__alert_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/risk-score/{iso_code}
+  method: get
+  operationId: get_risk_score_api_v1_risk_score__iso_code__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/trips/assess
+  method: post
+  operationId: assess_trip_api_v1_trips_assess_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/trips
+  method: post
+  operationId: watch_trip_api_v1_trips_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/trips
+  method: get
+  operationId: list_trips_api_v1_trips_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/trips/{trip_id}
+  method: get
+  operationId: get_trip_api_v1_trips__trip_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/trips/{trip_id}
+  method: delete
+  operationId: stop_trip_api_v1_trips__trip_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /api/v1/trips/{trip_id}/test-notification
+  method: post
+  operationId: test_trip_notification_api_v1_trips__trip_id__test_notification_post
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/conflicts
+  method: get
+  operationId: get_conflicts_api_v1_conflicts_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/advisories
+  method: get
+  operationId: get_advisories_api_v1_advisories_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/billing/plans
+  method: get
+  operationId: list_plans_api_v1_billing_plans_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/billing/checkout
+  method: post
+  operationId: create_checkout_api_v1_billing_checkout_post
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/billing/credits
+  method: post
+  operationId: buy_credits_api_v1_billing_credits_post
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/billing/portal
+  method: post
+  operationId: billing_portal_api_v1_billing_portal_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/usage
+  method: get
+  operationId: get_usage_api_v1_usage_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /api/v1/register
+  method: post
+  operationId: register_api_key_api_v1_register_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /api/v1/recover-key
+  method: post
+  operationId: recover_key_api_v1_recover_key_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required

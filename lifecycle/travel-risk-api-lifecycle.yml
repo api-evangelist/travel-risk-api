@@ -1,0 +1,8 @@
+name: Travel Risk API Lifecycle
+generated: '2026-10-09'
+method: searched
+source: https://travelriskapi.com/changelog
+versioning: "URL-path versioning (/api/v1, /ext/v1); additive changes — 'We add fields; we do not rename or remove them without notice.'"
+deprecation: null
+status_page: https://travelriskapi.com/status
+sla: "99.5% uptime SLA (Enterprise plan, https://travelriskapi.com/pricing)"

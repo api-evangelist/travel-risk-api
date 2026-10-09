@@ -1,0 +1,67 @@
+generated: '2026-10-09'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/travel-risk-api-aviation-openapi.yml
+- openapi/travel-risk-api-openapi.yml
+vocabulary:
+  name: Travel Risk API Domain Vocabulary
+  description: 'Terms declared by Travel Risk API''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-09'
+  terms:
+  - term: Public Data
+    definition: Country advisories, alerts, and risk scores. All endpoints require X-API-Key.
+    tags:
+    - Resource Group
+    source: openapi/travel-risk-api-openapi.yml
+  - term: Auth
+    definition: Self-serve API key registration.
+    tags:
+    - Resource Group
+    source: openapi/travel-risk-api-openapi.yml
+  - term: Billing
+    definition: Stripe checkout + webhook receiver.
+    tags:
+    - Resource Group
+    source: openapi/travel-risk-api-openapi.yml
+  - term: Usage
+    definition: Per-key usage metering and quota status.
+    tags:
+    - Resource Group
+    source: openapi/travel-risk-api-openapi.yml
+  - term: System
+    definition: Health and service metadata. No auth.
+    tags:
+    - Resource Group
+    source: openapi/travel-risk-api-openapi.yml
+  - term: HTTPValidationError
+    definition: 'Object declared by the contract with fields: detail.'
+    tags:
+    - Object
+    source: openapi/travel-risk-api-aviation-openapi.yml#/components/schemas/HTTPValidationError
+  - term: ValidationError
+    definition: 'Object declared by the contract with fields: loc, msg, type, input, ctx.'
+    tags:
+    - Object
+    source: openapi/travel-risk-api-aviation-openapi.yml#/components/schemas/ValidationError
+  - term: RecoverRequest
+    definition: 'Object declared by the contract with fields: email.'
+    tags:
+    - Object
+    source: openapi/travel-risk-api-openapi.yml#/components/schemas/RecoverRequest
+  - term: RegisterRequest
+    definition: 'Object declared by the contract with fields: email, company.'
+    tags:
+    - Object
+    source: openapi/travel-risk-api-openapi.yml#/components/schemas/RegisterRequest
+  - term: Segment
+    definition: 'Object declared by the contract with fields: type, flight, from_airport, to_airport, country, city, lat, lon, start, end.'
+    tags:
+    - Object
+    source: openapi/travel-risk-api-openapi.yml#/components/schemas/Segment
+  - term: TripRequest
+    definition: 'Object declared by the contract with fields: trip_id, segments, include_flight_status.'
+    tags:
+    - Object
+    source: openapi/travel-risk-api-openapi.yml#/components/schemas/TripRequest

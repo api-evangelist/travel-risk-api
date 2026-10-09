@@ -1,0 +1,29 @@
+name: Travel Risk API Conventions
+generated: '2026-10-09'
+method: searched
+source: https://travelriskapi.com/docs
+authentication: {style: api-key, header: X-API-Key, query: "api_key (aviation endpoints only)", docs: https://travelriskapi.com/docs}
+pagination: {style: offset, params: [skip, limit], max_limit: 1000, response_fields: [total, skip, limit, data, data_updated_at, generated_at], source: https://travelriskapi.com/llms.txt}
+identifiers: "ISO 3166-1 alpha-3 and alpha-2 country codes; IATA/ICAO airport and airline codes"
+timestamps: ISO 8601 UTC
+versioning: path (/api/v1, /ext/v1); additive-only per changelog
+rate_limit_signaling: {status: 429, headers: [Retry-After, X-Quota-Limit, X-Quota-Used]}
+idempotency:
+  coverage: none
+  note: No Idempotency-Key header or replay protection documented in docs or either OpenAPI.
+reversibility:
+  surfaces:
+  - write: watch_trip_api_v1_trips_post
+    reversal: stop_trip_api_v1_trips__trip_id__delete
+    window: null
+    grade: documented
+  - write: prices_watchlist_200_ext_v1_prices_watchlist_post
+    reversal: prices_watchlist_200_ext_v1_prices_watchlist__row_id__delete
+    window: null
+    grade: documented
+  - write: "Plan subscription (create_checkout)"
+    reversal: "Cancel or switch plans from the dashboard"
+    window: null
+    grade: documented
+    docs: https://travelriskapi.com/pricing
+  note: No reversal window stated.

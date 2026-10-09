@@ -1,0 +1,165 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/travel-risk-api/main/json-schema/travel-risk-api-trip-request-schema.json",
+  "title": "TripRequest",
+  "x-generated": "2026-10-09",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/travel-risk-api-openapi.yml#/components/schemas/TripRequest",
+  "properties": {
+    "trip_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 200
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Trip Id"
+    },
+    "segments": {
+      "items": {
+        "$ref": "#/$defs/Segment"
+      },
+      "type": "array",
+      "maxItems": 30,
+      "minItems": 1,
+      "title": "Segments"
+    },
+    "include_flight_status": {
+      "type": "boolean",
+      "title": "Include Flight Status",
+      "default": true
+    }
+  },
+  "type": "object",
+  "required": [
+    "segments"
+  ],
+  "$defs": {
+    "Segment": {
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "flight",
+            "stay"
+          ],
+          "title": "Type",
+          "default": "flight"
+        },
+        "flight": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Flight",
+          "description": "IATA flight number, e.g. UA1"
+        },
+        "from_airport": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "From Airport",
+          "description": "Departure airport IATA code"
+        },
+        "to_airport": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "To Airport",
+          "description": "Arrival airport IATA code"
+        },
+        "country": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Country",
+          "description": "Stay country: ISO 3166 alpha-3, alpha-2 or name"
+        },
+        "city": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "City"
+        },
+        "lat": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Lat"
+        },
+        "lon": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Lon"
+        },
+        "start": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Start",
+          "description": "Departure or check-in time (ISO 8601)"
+        },
+        "end": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "End",
+          "description": "Arrival or check-out time (ISO 8601)"
+        }
+      },
+      "type": "object",
+      "title": "Segment"
+    }
+  }
+}

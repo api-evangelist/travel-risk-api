@@ -1,0 +1,46 @@
+openapi: 3.2.0
+info:
+  title: Travel Risk System API
+  description: Real-time travel advisories, disaster alerts, conflict events and composite country risk scores, aggregated from government and multilateral sources.
+  contact:
+    name: Travel Code
+    email: api@travel-code.com
+    url: https://travelriskapi.com
+  version: 1.0.0
+  summary: Government travel advisories, disaster and conflict alerts and country risk scores.
+  x-logo:
+    url: https://travelriskapi.com/assets/logo.png
+    backgroundColor: '#FFFFFF'
+    altText: Travel Risk API
+servers:
+- url: https://api.travelriskapi.com
+  description: Production
+security:
+- ApiKeyHeader: []
+tags:
+- name: System
+  description: Health and service metadata. No auth.
+paths:
+  /api/v1/health:
+    get:
+      tags:
+      - System
+      summary: Service health check
+      operationId: health_check_api_v1_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security: []
+components:
+  securitySchemes:
+    ApiKeyHeader:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: Your key from https://travelriskapi.com — free plan, no card.
+externalDocs:
+  description: Documentation
+  url: https://travelriskapi.com/docs

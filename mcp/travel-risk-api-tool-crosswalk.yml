@@ -1,0 +1,91 @@
+name: Travel Risk API Tool Crosswalk
+generated: '2026-10-09'
+method: derived
+source: https://travelriskapi.com/docs/mcp + openapi/travel-risk-api-openapi.yml +
+  openapi/travel-risk-api-aviation-openapi.yml
+surfaces:
+  openapi:
+  - openapi/travel-risk-api-openapi.yml
+  - openapi/travel-risk-api-aviation-openapi.yml
+  mcp: https://api.travelriskapi.com/mcp (OAuth-gated; mapped by documented name/semantics)
+crosswalk:
+- tool: assess_trip
+  rest:
+  - assess_trip_api_v1_trips_assess_post
+  binding: name+description
+  confidence: high
+- tool: country_risk
+  rest:
+  - get_risk_score_api_v1_risk_score__iso_code__get
+  binding: name+description
+  confidence: high
+- tool: country_profile
+  rest:
+  - get_country_api_v1_countries__iso_code__get
+  binding: name+description
+  confidence: high
+- tool: travel_advisories
+  rest:
+  - get_advisories_api_v1_advisories_get
+  binding: name+description
+  confidence: high
+- tool: active_alerts
+  rest:
+  - get_alerts_api_v1_alerts_get
+  binding: name+description
+  confidence: high
+- tool: conflict_events
+  rest:
+  - get_conflicts_api_v1_conflicts_get
+  binding: name+description
+  confidence: high
+- tool: airport_conditions
+  rest:
+  - airport_summary_ext_v1_airport__iata__summary_get
+  - airport_status_ext_v1_airport__iata__status_get
+  binding: name+description
+  confidence: medium
+- tool: airport_security_wait
+  rest:
+  - airport_security_ext_v1_airport__iata__security_get
+  binding: name+description
+  confidence: high
+- tool: border_wait
+  rest:
+  - border_ext_v1_border__port__get
+  binding: name+description
+  confidence: high
+- tool: airline_profile
+  rest:
+  - airline_profile_ext_v1_airline__iata__profile_get
+  binding: name+description
+  confidence: high
+- tool: aircraft
+  rest:
+  - aircraft_by_reg_ext_v1_aircraft__reg__get
+  - aircraft_wifi_ext_v1_aircraft__reg__wifi_get
+  binding: name+description
+  confidence: medium
+- tool: flight_status
+  rest:
+  - adb_flights_number_adb_flights_number__number__get
+  binding: name+description
+  confidence: medium
+- tool: flight_wifi
+  rest:
+  - flight_wifi_ext_v1_flight__flight_iata__wifi_get
+  binding: name+description
+  confidence: high
+- tool: airline_wifi
+  rest:
+  - airline_wifi_ext_v1_airline__iata__wifi_get
+  binding: name+description
+  confidence: high
+- tool: ip_geolocation
+  rest:
+  - geoip_lookup_ext_v1_geoip__ip__get
+  binding: name+description
+  confidence: high
+coverage:
+  tools: 15
+  mapped: 15
