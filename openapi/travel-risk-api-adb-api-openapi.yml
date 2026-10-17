@@ -1,7 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Travel Risk Adb API
+  title: Travel Risk API — Aviation Adb API
   version: '1.0'
+  summary: Flights, airports, airlines, airline safety, in-flight Wi-Fi and airport conditions.
+  description: 'Aviation endpoints of Travel Risk API, on the same key as the risk data. `/ext/v1` covers in-flight Wi-Fi and Starlink, airline profiles and safety, US airport security wait times and status, border waits, fare history and IP geolocation. `/api/v9` and `/adb` serve flights, schedules, airports, airlines and aircraft; all families are documented in the full reference: https://api.travelriskapi.com/ext/reference/'
   contact:
     name: Travel Code
     email: api@travel-code.com
@@ -10,7 +12,6 @@ info:
     url: https://travelriskapi.com/assets/logo.png
     backgroundColor: '#FFFFFF'
     altText: Travel Risk API
-  description: 'Operations tagged Adb across 2 of this provider''s published API definitions: travel-risk-api-aviation-openapi.json, travel-risk-api-aviation-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.travelriskapi.com
   description: Production
@@ -45,9 +46,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/airports/icao/{code}:
     get:
       summary: Adb Airports/Icao
@@ -73,9 +71,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/airports/search/location:
     get:
       summary: Adb Airports/Search/Location
@@ -135,9 +130,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/airports/search/ip:
     get:
       summary: Adb Airports/Search/Ip
@@ -189,9 +181,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/aircrafts/Reg/{reg}:
     get:
       summary: Adb Aircrafts/Reg
@@ -217,9 +206,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/aircrafts/reg/{reg}:
     get:
       summary: Adb Aircrafts/Reg
@@ -245,9 +231,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/aircrafts/icao24/{hex}:
     get:
       summary: Adb Aircrafts/Icao24
@@ -273,9 +256,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/airports/iata/{code}/weather:
     get:
       summary: Adb Airports/Weather
@@ -301,9 +281,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/airports/icao/{code}/weather:
     get:
       summary: Adb Airports/Weather
@@ -329,9 +306,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/airports/iata/{code}/weather/{from}/{to}:
     get:
       summary: Adb Airports/Weather/Range
@@ -369,9 +343,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/flights/number/{number}:
     get:
       summary: Adb Flights/Number
@@ -397,9 +368,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/flights/number/{number}/{date}:
     get:
       summary: Adb Flights/Number/Date
@@ -457,9 +425,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /adb/flights/{number}/delays:
     get:
       summary: Adb Flights/Delays
@@ -485,20 +450,8 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Adb
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -525,6 +478,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
@@ -539,6 +501,3 @@ components:
 externalDocs:
   description: Documentation
   url: https://api.travelriskapi.com/ext/reference/
-x-refined-from:
-- travel-risk-api-aviation-openapi.json
-- travel-risk-api-aviation-openapi.yml

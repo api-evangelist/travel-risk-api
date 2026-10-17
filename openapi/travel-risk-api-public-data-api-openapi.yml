@@ -545,29 +545,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
 components:
   schemas:
-    TripRequest:
-      properties:
-        trip_id:
-          anyOf:
-          - type: string
-            maxLength: 200
-          - type: 'null'
-          title: Trip Id
-        segments:
-          items:
-            $ref: '#/components/schemas/Segment'
-          type: array
-          maxItems: 30
-          minItems: 1
-          title: Segments
-        include_flight_status:
-          type: boolean
-          title: Include Flight Status
-          default: true
-      type: object
-      required:
-      - segments
-      title: TripRequest
     Segment:
       properties:
         type:
@@ -640,15 +617,6 @@ components:
           description: Arrival or check-out time (ISO 8601)
       type: object
       title: Segment
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -670,6 +638,38 @@ components:
       - msg
       - type
       title: ValidationError
+    TripRequest:
+      properties:
+        trip_id:
+          anyOf:
+          - type: string
+            maxLength: 200
+          - type: 'null'
+          title: Trip Id
+        segments:
+          items:
+            $ref: '#/components/schemas/Segment'
+          type: array
+          maxItems: 30
+          minItems: 1
+          title: Segments
+        include_flight_status:
+          type: boolean
+          title: Include Flight Status
+          default: true
+      type: object
+      required:
+      - segments
+      title: TripRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

@@ -79,36 +79,6 @@ paths:
       security: []
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    RegisterRequest:
-      properties:
-        email:
-          type: string
-          title: Email
-        company:
-          type: string
-          title: Company
-      type: object
-      required:
-      - email
-      title: RegisterRequest
-    RecoverRequest:
-      properties:
-        email:
-          type: string
-          title: Email
-      type: object
-      required:
-      - email
-      title: RecoverRequest
     ValidationError:
       properties:
         loc:
@@ -130,6 +100,36 @@ components:
       - msg
       - type
       title: ValidationError
+    RegisterRequest:
+      properties:
+        email:
+          type: string
+          title: Email
+        company:
+          type: string
+          title: Company
+      type: object
+      required:
+      - email
+      title: RegisterRequest
+    RecoverRequest:
+      properties:
+        email:
+          type: string
+          title: Email
+      type: object
+      required:
+      - email
+      title: RecoverRequest
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     ApiKeyHeader:
       type: apiKey

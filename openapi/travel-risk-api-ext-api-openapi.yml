@@ -1,7 +1,9 @@
 openapi: 3.2.0
 info:
-  title: Travel Risk Ext API
+  title: Travel Risk API — Aviation Ext API
   version: '1.0'
+  summary: Flights, airports, airlines, airline safety, in-flight Wi-Fi and airport conditions.
+  description: 'Aviation endpoints of Travel Risk API, on the same key as the risk data. `/ext/v1` covers in-flight Wi-Fi and Starlink, airline profiles and safety, US airport security wait times and status, border waits, fare history and IP geolocation. `/api/v9` and `/adb` serve flights, schedules, airports, airlines and aircraft; all families are documented in the full reference: https://api.travelriskapi.com/ext/reference/'
   contact:
     name: Travel Code
     email: api@travel-code.com
@@ -10,7 +12,6 @@ info:
     url: https://travelriskapi.com/assets/logo.png
     backgroundColor: '#FFFFFF'
     altText: Travel Risk API
-  description: 'Operations tagged Ext across 2 of this provider''s published API definitions: travel-risk-api-aviation-openapi.json, travel-risk-api-aviation-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api.travelriskapi.com
   description: Production
@@ -45,9 +46,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/airport/{iata}/security:
     get:
       summary: Airport Security
@@ -73,9 +71,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/airport/{iata}/immigration:
     get:
       summary: Airport Immigration
@@ -109,9 +104,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/airport/{iata}/weather:
     get:
       summary: Airport Weather
@@ -137,9 +129,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/airport/{iata}/summary:
     get:
       summary: Airport Summary
@@ -165,9 +154,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/border/{port}:
     get:
       summary: Border
@@ -193,9 +179,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/aircraft/{reg}:
     get:
       summary: Aircraft By Reg
@@ -221,9 +204,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/geoip/{ip}:
     get:
       summary: Geoip Lookup
@@ -249,9 +229,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/flights/coverage:
     get:
       summary: Flights Coverage
@@ -264,9 +241,6 @@ paths:
               schema: {}
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/prices/history:
     get:
       summary: History Route
@@ -339,9 +313,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/prices/calendar:
     get:
       summary: Calendar Route
@@ -414,9 +385,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/prices/snapshots:
     post:
       summary: Prices Snapshots 202
@@ -429,9 +397,6 @@ paths:
               schema: {}
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/prices/watchlist:
     get:
       summary: Prices Watchlist 200
@@ -466,9 +431,6 @@ paths:
               schema: {}
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/prices/watchlist/{row_id}:
     delete:
       summary: Prices Watchlist 200
@@ -487,9 +449,6 @@ paths:
           type: string
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/airline/{iata}/profile:
     get:
       summary: Airline Profile
@@ -524,9 +483,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/airline/changes:
     get:
       summary: Airline Changes
@@ -585,9 +541,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/starlink/changes:
     get:
       summary: Starlink Changes
@@ -645,9 +598,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/stats/usage:
     get:
       summary: Stats Usage
@@ -675,9 +625,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/stats/health:
     get:
       summary: Stats Health
@@ -690,9 +637,6 @@ paths:
               schema: {}
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/aircraft/{reg}/wifi:
     get:
       summary: Aircraft Wifi
@@ -726,9 +670,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/flight/{flight_iata}/wifi:
     get:
       summary: Flight Wifi
@@ -762,9 +703,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/airline/{iata}/wifi:
     get:
       summary: Airline Wifi
@@ -790,9 +728,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/starlink/fleet:
     get:
       summary: Starlink Fleet
@@ -834,9 +769,6 @@ paths:
                 $ref: '#/components/schemas/HTTPValidationError'
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
   /ext/v1/wifi/reports:
     post:
       summary: Submit Report
@@ -852,20 +784,8 @@ paths:
               schema: {}
       tags:
       - Ext
-    servers:
-    - url: https://api.travelriskapi.com
-      description: Production
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -892,6 +812,15 @@ components:
       - msg
       - type
       title: ValidationError
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
   securitySchemes:
     ApiKeyHeader:
       type: apiKey
@@ -906,6 +835,3 @@ components:
 externalDocs:
   description: Documentation
   url: https://api.travelriskapi.com/ext/reference/
-x-refined-from:
-- travel-risk-api-aviation-openapi.json
-- travel-risk-api-aviation-openapi.yml

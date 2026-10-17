@@ -2,8 +2,7 @@
   "provider": "travel-risk-api",
   "sources": [
     "_original/travel-risk-api-aviation-openapi.json",
-    "_original/travel-risk-api-openapi.json",
-    "travel-risk-api-aviation-openapi.yml"
+    "_original/travel-risk-api-openapi.json"
   ],
   "outputs": [
     "travel-risk-api-adb-api-openapi.yml",
@@ -14,13 +13,11 @@
     "travel-risk-api-system-api-openapi.yml",
     "travel-risk-api-usage-api-openapi.yml"
   ],
-  "archived": [
-    "deleted 1 superseded output(s) from the previous generation",
-    "archived openapi/travel-risk-api-aviation-openapi.yml"
-  ],
+  "archived": [],
   "errors": [],
   "warnings": [],
   "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
     "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "travel-risk-api-aviation-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "travel-risk-api-aviation-openapi.json: tagged paths GET /ext/v1/airport/{iata}/status -> Ext",
@@ -65,54 +62,16 @@
     "travel-risk-api-aviation-openapi.json: declared missing tag: Adb",
     "travel-risk-api-aviation-openapi.json: declared missing tag: Ext",
     "travel-risk-api-openapi.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "travel-risk-api-aviation-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/airport/{iata}/status -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/airport/{iata}/security -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/airport/{iata}/immigration -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/airport/{iata}/weather -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/airport/{iata}/summary -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/border/{port} -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/aircraft/{reg} -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/geoip/{ip} -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/flights/coverage -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/prices/history -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/prices/calendar -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths POST /ext/v1/prices/snapshots -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/prices/watchlist -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths POST /ext/v1/prices/watchlist -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths DELETE /ext/v1/prices/watchlist -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths DELETE /ext/v1/prices/watchlist/{row_id} -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/airline/{iata}/profile -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/airline/changes -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/starlink/changes -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/stats/usage -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/stats/health -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/aircraft/{reg}/wifi -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/flight/{flight_iata}/wifi -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/airline/{iata}/wifi -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /ext/v1/starlink/fleet -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths POST /ext/v1/wifi/reports -> Ext",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/airports/iata/{code} -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/airports/icao/{code} -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/airports/search/location -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/airports/search/ip -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/aircrafts/Reg/{reg} -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/aircrafts/reg/{reg} -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/aircrafts/icao24/{hex} -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/airports/iata/{code}/weather -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/airports/icao/{code}/weather -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/airports/iata/{code}/weather/{from}/{to} -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/flights/number/{number} -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/flights/number/{number}/{date} -> Adb",
-    "travel-risk-api-aviation-openapi.yml: tagged paths GET /adb/flights/{number}/delays -> Adb",
-    "travel-risk-api-aviation-openapi.yml: declared missing tag: Adb",
-    "travel-risk-api-aviation-openapi.yml: declared missing tag: Ext",
-    "tag 'Adb' spans 2 source specs (travel-risk-api-aviation-openapi.json, travel-risk-api-aviation-openapi.yml): per-path servers applied",
-    "tag 'Ext' spans 2 source specs (travel-risk-api-aviation-openapi.json, travel-risk-api-aviation-openapi.yml): per-path servers applied",
-    "superseded outputs removed: travel-risk-api-openapi.yml",
-    "apis.yml register: written (+7 apis, 8 total)"
+    "apis.yml register: already-registered"
   ],
   "skipped": [
-    "travel-risk-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+    "_original/travel-risk-api-aviation-openapi.yml: archived document superseded by a larger archived document",
+    "travel-risk-api-adb-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travel-risk-api-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travel-risk-api-billing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travel-risk-api-ext-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travel-risk-api-public-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travel-risk-api-system-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "travel-risk-api-usage-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]
 }
