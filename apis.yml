@@ -129,6 +129,8 @@ apis:
   humanURL: https://travelriskapi.com/docs
   baseURL: https://api.travelriskapi.com
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
