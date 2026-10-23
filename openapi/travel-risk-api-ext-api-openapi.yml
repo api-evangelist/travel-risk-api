@@ -835,3 +835,9 @@ components:
 externalDocs:
   description: Documentation
   url: https://api.travelriskapi.com/ext/reference/
+x-provenance:
+  method: harvested
+  publisher: Travel Risk API
+  source: https://travelriskapi.com/ext/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
